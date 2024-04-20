@@ -1,27 +1,3 @@
-// import { useState } from "react";
-// import ItemCard from "./ItemCard";
-// import ItemDetailModal from "./ItemDetailModal";
-
-// function ItemGrid({ items }) {
-//   const [selectedItem, setSelectedItem] = useState(null);
-
-//   return (
-//     <div className="p-4">
-//       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-//         {items.map((item) => (
-//           <ItemCard key={item.id} item={item} onClick={setSelectedItem} />
-//         ))}
-//       </div>
-//       {selectedItem && (
-//         <ItemDetailModal
-//           item={selectedItem}
-//           onClose={() => setSelectedItem(null)}
-//         />
-//       )}
-//     </div>
-//   );
-// }
-
 import React, { useState } from "react";
 import { ListBox, ListBoxItem, ProgressBar, Text } from "react-aria-components";
 

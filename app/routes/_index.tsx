@@ -43,13 +43,6 @@ function Item({ item, onClick }) {
   );
 }
 
-// export default function Index() {
-//   return (
-
-//     </div>
-//   );
-// }
-
 export default function Index() {
   {
     const [items] = useState([
