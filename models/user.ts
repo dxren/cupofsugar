@@ -5,21 +5,19 @@ interface User {
     email: string,
     location: string,
     bio: string,
-    id: string
 }
 
 export function createUser ({
     name,
     email,
     location,
-    bio,
-    id
+    bio
 }: User) {
 
     return(prisma.user.create({
 
         data:{
-            name, email, location, bio, id
+            name, email, location, bio
         }
 
     }))
