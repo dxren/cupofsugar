@@ -1,18 +1,18 @@
 // Routes
-// GET /stuff?user_id=1234
-//    List all stuff from one user
+// GET /item?user_id=1234
+//    List all item from one user
 //  return: Item[]
 //
-// POST /stuff - json = Item object
+// POST /item - json = Item object
 //    Create item
 //  return: Item
 //
-// PATCH /stuff - json = Item object
+// PATCH /item - json = Item object
 //    Update item
 //  return: Item
 //
 //
-// DELETE /stuff?item_id=1234
+// DELETE /item?item_id=1234
 //    Delete item
 //  return: true/false (was deleted?)
 //
@@ -22,7 +22,7 @@
 import { User, Item } from '@prisma/client';
 import type { ActionFunctionArgs } from "@remix-run/node"; // or cloudflare/deno
 import { json } from "@remix-run/node"; // or cloudflare/deno
-import { CreateItem, ListItem, SearchItemOptions, UpdateItem, DeleteItem } from "~/service/stuff";
+import { CreateItem, ListItem, SearchItemOptions, UpdateItem, DeleteItem } from "~/service/item";
 
 function getParamFromURL(request: Request, param: string ): string {
   let { searchParams } = new URL(request.url);
@@ -47,7 +47,7 @@ async function work({ request }: ActionFunctionArgs) {
   try {
     switch (request.method) {
       case "GET": {
-        // list stuff
+        // list item
         const userID = getParamFromURL(request, "user_id")
         if (userID === "") {
           return json({error: "user_id parameter missing"})
