@@ -29,7 +29,7 @@ model Item {
   description String
   tag         String[]
   available   Boolean
-  imageUrl    String?
+  imageUrl    String
 
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   userId String 

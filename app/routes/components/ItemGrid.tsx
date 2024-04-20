@@ -13,7 +13,7 @@ function ImageGrid( props: ImageGridProps ) {
   
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedItem, setSelectedItem] = useState<Item | null>(null);
 
 
   const handleImageClick = (item: Item) => {
@@ -40,7 +40,7 @@ function ImageGrid( props: ImageGridProps ) {
             className="relative rounded outline-none group cursor-default"
           >
             <img
-              src={item.imageUrl || ""}
+              src={item.imageUrl}
               alt={item.description}
               className="h-full w-full object-cover rounded"
               onClick={() => handleImageClick(item)}
