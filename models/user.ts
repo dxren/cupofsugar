@@ -1,22 +1,28 @@
-import { PrismaClient } from '@prisma/client';
+import prisma from '../models/utils/prisma';
+
+interface User {
+    name: string,
+    email: string,
+    location: string,
+    bio: string,
+    id: string
+}
 
 export function createUser ({
     name,
     email,
-    password,
-    address,
+    location,
     bio,
     id
-}:
-{
-    name:string,
-    email: string,
-    password: string,
-    address: string,
-    bio: string,
-    id: string
+}: User) {
 
-}){
+    return(prisma.user.create({
+
+        data:{
+            name, email, location, bio, id
+        }
+
+    }))
     
     
     
