@@ -9,33 +9,18 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
   return (
-    <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.8" }}>
-      <h1>Cup of Sugar</h1>
-      <ul>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/blog"
-            rel="noreferrer"
-          >
-            15m Quickstart Blog Tutorial
-          </a>
-        </li>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/jokes"
-            rel="noreferrer"
-          >
-            Deep Dive Jokes App Tutorial
-          </a>
-        </li>
-        <li>
-          <a target="_blank" href="https://remix.run/docs" rel="noreferrer">
-            Remix Docs
-          </a>
-        </li>
-      </ul>
+    <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.8", textAlign: "center" }}>
+      <div>
+        <h1> Cup of Sugar </h1>
+      </div>
+      <div style={{ textAlign: "left", margin: "0 auto", maxWidth: "300px" }}>
+        <label htmlFor="email" style={{ marginBottom: "5px" }}>Email:</label>
+        <input type="email" id="email" name="email" placeholder="Email" required></input>
+      </div>
+      <div style={{ textAlign: "left", margin: "0 auto", maxWidth: "300px" }}>
+        <label htmlFor="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Password" required></input>
+      </div>
     </div>
   );
 }
