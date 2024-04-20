@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { ListBox, ListBoxItem, ProgressBar, Text } from "react-aria-components";
-import { Switch } from "@adobe/react-spectrum";
 import Modal from "./ItemDetailModal";
 
 type Item = {
@@ -11,6 +10,7 @@ type Item = {
 };
 
 function ImageGrid() {
+  const isAuthed = true;
   const [items] = useState([
     {
       id: 1,
@@ -69,7 +69,7 @@ function ImageGrid() {
         items={items}
         selectionMode="multiple"
         layout="grid"
-        className="overflow-auto outline-none bg-white rounded-lg shadow p-2 h-[500px] w-full max-w-screen-md grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 empty:flex"
+        className="overflow-auto outline-none rounded-lg shadow p-2 h-[500px] w-full max-w-screen-md grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 empty:flex"
       >
         {(item) => (
           <ListBoxItem
