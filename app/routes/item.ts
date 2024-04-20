@@ -19,7 +19,7 @@
 // If error: response JSON will have this format:
 // { 'error': 'error is abcd' }
 
-import { Item } from '../models/utils/prisma';
+import { Item } from '@prisma/client';
 import type { ActionFunctionArgs } from "@remix-run/node"; // or cloudflare/deno
 import { json } from "@remix-run/node"; // or cloudflare/deno
 import { CreateItem, ListItem, SearchItemOptions, UpdateItem, DeleteItem } from "~/service/item";
