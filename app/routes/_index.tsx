@@ -13,7 +13,7 @@ const ThemeToggle = () => {
   return (
     <label className="swap swap-rotate">
       {/* this hidden checkbox controls the state */}
-      <input type="checkbox" className="theme-controller" value="coffee" />
+      <input type="checkbox" className="theme-controller" value="dark" />
       {/* sun icon */}
       <svg
         className="swap-off fill-current w-10 h-10"
@@ -45,9 +45,6 @@ function Item({ item, onClick }) {
 
 // export default function Index() {
 //   return (
-//     <div className="flex flex-col min-h-screen">
-//       <ThemeToggle />
-//       <h1>Welcome to Cup of Sugar</h1>
 
 //     </div>
 //   );
@@ -95,7 +92,8 @@ export default function Index() {
 
     return (
       <div>
-        <div className="bg-red-500 text-5xl">TEXT HERE</div>
+        <ThemeToggle />
+        <h1 className="text-5xl text-center p-3">Welcome to Cup of Sugar</h1>
         <ItemGrid items={items} />;
       </div>
     );
