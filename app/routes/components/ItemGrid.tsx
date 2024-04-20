@@ -1,6 +1,7 @@
 import { Item } from "@prisma/client";
 import React, { useState } from "react";
 import { ListBox, ListBoxItem, ProgressBar, Text } from "react-aria-components";
+import Modal from "./ItemDetailModal";
 
 interface ImageGridExampleProps {
   items: Item[]
@@ -11,14 +12,27 @@ function ImageGridExample( props: ImageGridExampleProps ) {
   const items = props.items
   
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  const handleImageClick = (item) => {
+    console.log("item clicked:", item);
+    setSelectedItem(item);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
-    <div className="sm:p-8 rounded-lg flex justify-center">
+    <div className="sm:p-8 rounded-lg flex justify-center w-full">
       <ListBox
         aria-label="Items"
         items={items}
         selectionMode="multiple"
         layout="grid"
-        className="overflow-auto outline-none bg-white rounded-lg shadow p-2 h-[500px] w-full max-w-[500px] grid grid-cols-3 gap-3 empty:flex"
+        className="overflow-auto outline-none rounded-lg shadow p-2 h-[500px] w-full max-w-screen-md grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 empty:flex"
       >
         {(item) => (
           <ListBoxItem
@@ -28,7 +42,8 @@ function ImageGridExample( props: ImageGridExampleProps ) {
             <img
               src={item.imageUrl || ""}
               alt={item.description}
-              className="h-[80px] w-full object-cover rounded group-selected:ring-2 group-focus-visible:ring-4 group-selected:group-focus-visible:ring-4 ring-offset-2 ring-sky-600"
+              className="h-full w-full object-cover rounded"
+              onClick={() => handleImageClick(item)}
             />
             <Text
               slot="label"
@@ -36,11 +51,13 @@ function ImageGridExample( props: ImageGridExampleProps ) {
             >
               {item.title}
             </Text>
+            {/* <Switch>Available</Switch> */}
           </ListBoxItem>
         )}
       </ListBox>
+      {isModalOpen && <Modal item={selectedItem} onClose={closeModal} />}
     </div>
   );
 }
 
-export default ImageGridExample;
+export default ImageGrid;
