@@ -32,14 +32,20 @@ export default function newItem() {
                     <input type="text" name="itemDescription" placeholder="Describe your item" ></input>
                 </div>
             </div>
-            <div style={{ textAlign: "left", marginTop: "10px" }}>
-                <button onClick={addItem} style={{ border: "1px solid #000", borderRadius: "5px", backgroundColor: "#ccc", padding: "3px 10px" }}>Add Item</button>
-            </div>
-            <footer style={{ position: "fixed", bottom: 0, left: 0, width: "100%", background: "#f5f5f5", padding: "10px 0", textAlign: "center" }}>
-                <div style={{ display: "flex", justifyContent: "center" }}>
-                    <img src={sugar} style={{ width: "80px", height: "80px" }} alt="Sugar" />
+            <div style={{ textAlign: "left", maxWidth: "300px" }}>
+                <label htmlFor="uploadImage">Item Description:</label>
+                <div style={{ textAlign: "left", maxWidth: "300px", maxHeight: "500px", border: "1px solid #000", borderRadius: "5px" }}>
+                    <input type="text" name="uploadImage" placeholder="Upload Image URL" ></input>
                 </div>
-            </footer>
+                <div style={{ textAlign: "left", marginTop: "10px" }}>
+                    <button onClick={addItem} style={{ border: "1px solid #000", borderRadius: "5px", backgroundColor: "#ccc", padding: "3px 10px" }}>Add Item</button>
+                </div>
+                <footer style={{ position: "fixed", bottom: 0, left: 0, width: "100%", background: "#f5f5f5", padding: "10px 0", textAlign: "center" }}>
+                    <div style={{ display: "flex", justifyContent: "center" }}>
+                        <img src={sugar} style={{ width: "80px", height: "80px" }} alt="Sugar" />
+                    </div>
+                </footer>
+            </div>
         </div>
     );
 }
