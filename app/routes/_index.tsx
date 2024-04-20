@@ -1,3 +1,4 @@
+import { Item } from "@prisma/client";
 import type { MetaFunction } from "@remix-run/node";
 import { useState } from "react";
 import ItemGrid from "./components/ItemGrid";
@@ -39,11 +40,11 @@ function Item({ item, onClick }) {
     <div className="p-4 border shadow rounded" onClick={() => onClick(item)}>
       <h2 className="text-lg font-bold">{item.name}</h2>
       <p>{item.description}</p>
-    </div>
+      </div>
   );
 }
 
-export default function Index() {
+export default function Gallery() {
   {
     const [items] = useState([
       {

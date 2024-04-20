@@ -57,12 +57,12 @@ async function work({ request }: ActionFunctionArgs) {
       }
       case "POST": {
         // create item
-        let item = await request.json() as unknown as Item;
+        let item = await request.json() as Item;
         item = await CreateItem(item);
         return json(item);
       }
       case "PATCH": {
-        let item = await request.json() as unknown as Item;
+        let item = await request.json() as Item;
         item = await UpdateItem(item);
         return json(item);
       }
