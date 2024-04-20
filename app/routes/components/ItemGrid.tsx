@@ -3,11 +3,11 @@ import React, { useState } from "react";
 import { ListBox, ListBoxItem, ProgressBar, Text } from "react-aria-components";
 import Modal from "./ItemDetailModal";
 
-interface ImageGridExampleProps {
+interface ImageGridProps {
   items: Item[]
 }
 
-function ImageGridExample( props: ImageGridExampleProps ) {
+function ImageGrid( props: ImageGridProps ) {
 
   const items = props.items
   
@@ -15,8 +15,8 @@ function ImageGridExample( props: ImageGridExampleProps ) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
 
-  const handleImageClick = (item) => {
-    console.log("item clicked:", item);
+
+  const handleImageClick = (item: Item) => {
     setSelectedItem(item);
     setIsModalOpen(true);
   };

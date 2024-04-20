@@ -55,7 +55,6 @@ export default function Index() {
       <div>
         <ThemeToggle />
         <h1 className="text-5xl text-center p-3">Welcome to Cup of Sugar</h1>
-        <ItemGrid items={items} />
       </div>
     );
   }
