@@ -35,15 +35,6 @@ const ThemeToggle = () => {
   );
 };
 
-function Item({ item, onClick }) {
-  return (
-    <div className="p-4 border shadow rounded" onClick={() => onClick(item)}>
-      <h2 className="text-lg font-bold">{item.name}</h2>
-      <p>{item.description}</p>
-      </div>
-  );
-}
-
 export default function Gallery() {
   {
     const [items] = useState([

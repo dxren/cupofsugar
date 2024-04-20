@@ -1,51 +1,15 @@
+import { Item } from "@prisma/client";
 import React, { useState } from "react";
 import { ListBox, ListBoxItem, ProgressBar, Text } from "react-aria-components";
 
-type Item = {
-  id: number;
-  name: string;
-  description: string;
-  imageUrl: string;
-};
+interface ImageGridExampleProps {
+  items: Item[]
+}
 
-function ImageGridExample() {
-  const [items] = useState<Item[]>([
-    {
-      id: 1,
-      name: "Bouncy Castle",
-      description: "Bouncy castle taking up closet space.",
-      imageUrl:
-        "https://cup-of-sugar-assets.s3.us-east-2.amazonaws.com/bouncy-castle.jpg",
-    },
-    {
-      id: 2,
-      name: "Dehumidifier",
-      description: "A gently used dehumidifier.",
-      imageUrl:
-        "https://cup-of-sugar-assets.s3.us-east-2.amazonaws.com/dehumidifier.jpg",
-    },
-    {
-      id: 3,
-      name: "Drill",
-      description: "Nice Dewalt drill",
-      imageUrl:
-        "https://cup-of-sugar-assets.s3.us-east-2.amazonaws.com/drill.jpg",
-    },
-    {
-      id: 4,
-      name: "Eloquent JS book",
-      description: "Javascript programming book",
-      imageUrl:
-        "https://cup-of-sugar-assets.s3.us-east-2.amazonaws.com/eloquentjs.jpg",
-    },
-    {
-      id: 5,
-      name: "Tent",
-      description: "tent",
-      imageUrl:
-        "https://cup-of-sugar-assets.s3.us-east-2.amazonaws.com/tent.jpg",
-    },
-  ]);
+function ImageGridExample( props: ImageGridExampleProps ) {
+
+  const items = props.items
+  
 
   return (
     <div className="sm:p-8 rounded-lg flex justify-center">
@@ -58,11 +22,11 @@ function ImageGridExample() {
       >
         {(item) => (
           <ListBoxItem
-            textValue={item.name}
+            textValue={item.title}
             className="relative rounded outline-none group cursor-default"
           >
             <img
-              src={item.imageUrl}
+              src={item.imageUrl || ""}
               alt={item.description}
               className="h-[80px] w-full object-cover rounded group-selected:ring-2 group-focus-visible:ring-4 group-selected:group-focus-visible:ring-4 ring-offset-2 ring-sky-600"
             />
@@ -70,7 +34,7 @@ function ImageGridExample() {
               slot="label"
               className="text-[11px] text-gray-700 font-semibold overflow-hidden text-ellipsis whitespace-nowrap max-w-full block mt-1"
             >
-              {item.name}
+              {item.title}
             </Text>
           </ListBoxItem>
         )}
