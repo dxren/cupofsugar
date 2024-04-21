@@ -21,7 +21,7 @@ function Modal({ item, onClose }: ModalProps) {
       className="fixed inset-0 bg-black bg-opacity-5 z-50 flex justify-center items-center"
     >
       <div
-        className="bg-white p-4 rounded-lg max-w-xl w-full h-auto"
+        className="bg-base-100 border-4 border-neutral p-4 rounded-lg max-w-xl w-full h-auto"
         onClick={(e) => e.stopPropagation()} // Prevent clicks from closing the modal
       >
         <h2>{item.title}</h2>

@@ -43,7 +43,7 @@ export default function Dorothy() {
   const data = useLoaderData<typeof loader>();
   const isAuthed = data.user?.userId === "dorothy";
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-base-100">
       <div className="navbar bg-primary text-primary-content">
         <div className="navbar-start">
           <Link to="/" className="btn btn-ghost text-xl">
@@ -60,8 +60,8 @@ export default function Dorothy() {
           <ThemeToggle className="mr-4" />
         </div>
       </div>
-      <div className="max-w-4xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-        <h1 className="text-4xl font-bold text-center text-gray-900 mb-8">
+      <div className="max-w-4xl mx-auto py-8 px-4 sm:px-6 lg:px-8 bg-base-100">
+        <h1 className="text-4xl font-bold text-center text-base-content mb-8">
           Dorothy's Stuff
         </h1>
         <p className="py-4">
