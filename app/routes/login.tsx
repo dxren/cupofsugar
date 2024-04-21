@@ -8,7 +8,7 @@ import { authenticator } from "~/service/auth.server";
 // names we are going to use in the strategy
 export default function Screen() {
   const navigation = useNavigation();
-  const isSubmitting = navigation.formAction === "/login";
+  const isSubmitting = navigation.state === "submitting"
 
   return (
     <Form className="flex flex-col gap-4 w-75% max-w-64 mx-auto mt-10" method="post" action="/login">

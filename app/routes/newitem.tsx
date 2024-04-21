@@ -3,7 +3,7 @@ import { Form } from "@remix-run/react";
 import Footer from "./components/Footer";
 import { CreateItem } from "~/service/item";
 
-interface InputFieldProps{
+interface InputFieldProps {
   name: string,
   label: string,
   placeholder: string,
@@ -28,13 +28,13 @@ export async function action({ request }: ActionFunctionArgs) {
     available: true,
     imageUrl: data.uploadImage || "",
     userId: "clv8uen4w0000iaqot8072h99",
-})
-  
-  return redirect("/success");
+  })
+
+  return redirect("/dorothy");
 }
 
 // Form input component
-const InputField = ({ name, label, placeholder, type = "text" }:InputFieldProps) => (
+const InputField = ({ name, label, placeholder, type = "text" }: InputFieldProps) => (
   <div className="mb-4">
     <label htmlFor={name} className="block text-sm font-medium text-gray-700">
       {label}
