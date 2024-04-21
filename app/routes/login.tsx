@@ -39,7 +39,7 @@ export async function action({ request }: ActionFunctionArgs) {
   // request object, optionally we pass an object with the URLs we want the user
   // to be redirected to after a success or a failure
   return await authenticator.authenticate("user-pass", request, {
-    successRedirect: "/",
+    successRedirect: "/dorothy",
     failureRedirect: "/login",
   });
 };
@@ -50,6 +50,6 @@ export async function action({ request }: ActionFunctionArgs) {
 export async function loader({ request }: LoaderFunctionArgs) {
   // If the user is already authenticated redirect to /dashboard directly
   return await authenticator.isAuthenticated(request, {
-    successRedirect: "/",
+    successRedirect: "/dorothy",
   });
 };

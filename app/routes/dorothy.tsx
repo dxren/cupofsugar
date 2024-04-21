@@ -1,4 +1,4 @@
-import { ActionFunctionArgs, json } from "@remix-run/node";
+import { ActionFunctionArgs, LoaderFunctionArgs, json } from "@remix-run/node";
 import ItemGrid from "./components/ItemGrid";
 import NewItemModal from "./components/NewItemModal";
 import { CreateItem, ListItem } from "~/service/item";
@@ -6,6 +6,7 @@ import { Link, useLoaderData } from "@remix-run/react";
 import ThemeToggle from "./components/ThemeToggle";
 import Footer from "./components/Footer";
 import sugar from "~/img/sugar.png";
+import { authenticator } from "~/service/auth.server";
 
 export async function action({ request }: ActionFunctionArgs) {
   console.log("SUBMITTED THE FORM");
@@ -29,16 +30,18 @@ export async function action({ request }: ActionFunctionArgs) {
   return null;
 }
 
-export const loader = async () => {
+export async function loader({ request }: LoaderFunctionArgs) {
   const items = await ListItem("dorothy");
 
   console.log(items);
+  const user = await authenticator.isAuthenticated(request);
 
-  return json({ items });
+  return json({ items, user });
 };
 
 export default function Dorothy() {
   const data = useLoaderData<typeof loader>();
+  const isAuthed = data.user?.userId === "dorothy";
   return (
     <div className="min-h-screen bg-gray-100">
       <div className="navbar bg-primary text-primary-content">
@@ -47,9 +50,9 @@ export default function Dorothy() {
           <img src={sugar} alt="Cup of Sugar" href="/" className="w-14 h-14" />
         </div>
         <div className="navbar-end">
-          <Link to="/login" className="btn w-20 btn-secondary mr-8">
+          {isAuthed || <Link to="/login" className="btn w-20 btn-secondary mr-8">
             Log In
-          </Link>
+          </Link>}
           <ThemeToggle className="mr-4" />
         </div>
       </div>
@@ -65,9 +68,8 @@ export default function Dorothy() {
         <div className="flex flex-col items-center">
           <ItemGrid items={data.items} />
           <div className="my-4" />
-          <NewItemModal />
+          {isAuthed && <NewItemModal />}
         </div>
-        <Footer />
       </div>
     </div>
   );

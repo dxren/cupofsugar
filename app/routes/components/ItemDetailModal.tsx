@@ -18,7 +18,7 @@ function Modal({ item, onClose }: ModalProps) {
   return (
     <div
       onClick={handleBackdropClick}
-      className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center"
+      className="fixed inset-0 bg-black bg-opacity-5 z-50 flex justify-center items-center"
     >
       <div
         className="bg-white p-4 rounded-lg max-w-xl w-full h-auto"
