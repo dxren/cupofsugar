@@ -39,13 +39,15 @@ export default function Index() {
               <p className="pb-6">
                 Cup of Sugar is a simple link to share with your friends.
               </p>
-              <Link to="/login" className="btn btn-primary">
-                Get Started
-              </Link>
-              <div className="my-4" />
-              <Link to="/dorothy" className="btn btn-primary">
-                My Stuff
-              </Link>
+              <div className="flex flex-col max-w-32">
+                <Link to="/login" className="btn btn-primary">
+                  Get Started
+                </Link>
+                <div className="my-4" />
+                <Link to="/dorothy" className="btn btn-secondary">
+                  My Stuff
+                </Link>
+              </div>
             </div>
           </div>
         </div>
