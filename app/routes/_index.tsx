@@ -14,7 +14,6 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
   {
-
     return (
       <div>
         <div className="navbar bg-primary text-primary-content">
@@ -23,7 +22,9 @@ export default function Index() {
             <img src={sugar} alt="Cup of Sugar" className="w-14 h-14" />
           </div>
           <div className="navbar-end">
-            <Link to="/login" className="btn w-20 btn-secondary mr-8">Log In</Link>
+            <Link to="/login" className="btn w-20 btn-secondary mr-8">
+              Log In
+            </Link>
             <ThemeToggle className="mr-4" />
           </div>
         </div>
@@ -32,9 +33,19 @@ export default function Index() {
             <img src={sugar} className="max-w-sm rounded-lg" />
             <div>
               <h1 className="text-5xl font-bold">We love sharing.</h1>
-              <p className="pt-6">The only problem is: we have too many things to share.</p>
-              <p className="pb-6">Cup of Sugar is a simple link to share with your friends.</p>
-              <Link to="/login" className="btn btn-primary">Get Started</Link>
+              <p className="pt-6">
+                The only problem is: we have too many things to share.
+              </p>
+              <p className="pb-6">
+                Cup of Sugar is a simple link to share with your friends.
+              </p>
+              <Link to="/login" className="btn btn-primary">
+                Get Started
+              </Link>
+              <div className="my-4" />
+              <Link to="/dorothy" className="btn btn-primary">
+                My Stuff
+              </Link>
             </div>
           </div>
         </div>
