@@ -20,7 +20,7 @@ export default function NewItemModal() {
                             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
                         </svg>
                     </button>
-                    <Form className="flex flex-col gap-4 w-75% max-w-64 mx-auto" method="post" action="/newitem">
+                    <Form className="flex flex-col gap-4 w-75% max-w-64 mx-auto" method="post" action="/dorothy">
                         <h1 className="text-2xl text-center">Add a new item!</h1>
                         <fieldset disabled={isSubmitting}>
                             <label className="input input-bordered flex items-center gap-2 m-2">
