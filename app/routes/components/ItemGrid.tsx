@@ -9,7 +9,7 @@ type Item = {
   imageUrl: string;
 };
 
-function ImageGrid() {
+function ItemGrid() {
   const isAuthed = true;
   const [items] = useState([
     {
@@ -98,4 +98,4 @@ function ImageGrid() {
   );
 }
 
-export default ImageGrid;
+export default ItemGrid;

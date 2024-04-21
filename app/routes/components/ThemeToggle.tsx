@@ -1,6 +1,6 @@
-export default function ThemeToggle() {
+export default function ThemeToggle({ className }: { className: string }) {
   return (
-    <div className="flex justify-end">
+    <div className={`flex ${className}`}>
       <label className="swap swap-rotate">
         {/* this hidden checkbox controls the state */}
         <input type="checkbox" className="theme-controller" value="dark" />
