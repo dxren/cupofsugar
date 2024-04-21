@@ -19,7 +19,16 @@ export async function ListItem(userId: string): Promise<Item[]> {
   return items;
 }
 
-export async function CreateItem(item: Item): Promise<Item> {
+interface CreateItem {
+  title: string;
+  description: string;
+  tag: string[];
+  available: boolean;
+  imageUrl: string;
+  userId: string;
+}
+
+export async function CreateItem(item: CreateItem): Promise<Item> {
   return prisma.item.create({
     data: item,
   });

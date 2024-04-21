@@ -1,20 +1,40 @@
 import { redirect, type ActionFunctionArgs } from "@remix-run/node";
 import { Form } from "@remix-run/react";
 import Footer from "./components/Footer";
+import { CreateItem } from "~/service/item";
+
+interface InputFieldProps{
+  name: string,
+  label: string,
+  placeholder: string,
+  type?: string,
+}
 
 export async function action({ request }: ActionFunctionArgs) {
+  console.log("SUBMITTED THE FORM")
   const body = await request.formData();
   const data = {
-    itemName: body.get("itemName"),
-    itemDescription: body.get("itemDescription"),
-    uploadImage: body.get("uploadImage"),
+    itemName: body.get("itemName")?.toString(),
+    itemDescription: body.get("itemDescription")?.toString(),
+    uploadImage: body.get("uploadImage")?.toString(),
   };
   console.log("Item added", data);
+
+
+  const item = await CreateItem({
+    title: data.itemName || "",
+    description: data.itemDescription || "",
+    tag: [],
+    available: true,
+    imageUrl: data.uploadImage || "",
+    userId: "clv8uen4w0000iaqot8072h99",
+})
+  
   return redirect("/success");
 }
 
 // Form input component
-const InputField = ({ name, label, placeholder, type = "text" }) => (
+const InputField = ({ name, label, placeholder, type = "text" }:InputFieldProps) => (
   <div className="mb-4">
     <label htmlFor={name} className="block text-sm font-medium text-gray-700">
       {label}
