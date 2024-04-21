@@ -5,6 +5,7 @@ import { z } from 'zod'
 // variables and their types
 const envSchema = z.object({
   DATABASE_URL: z.string().url(),
+  SECRET_KEY: z.string(),
   ENV: z
     .union([
       z.literal('development'),
