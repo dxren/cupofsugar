@@ -8,5 +8,7 @@ export default {
   plugins: [require('daisyui'), require('tailwindcss-react-aria-components')]
   ,
   daisyui: {
-    themes: ["light", "dark", "cupcake"]  },
+    themes: ["light", "dark", "cupcake"]
+  },
+
 } satisfies Config;

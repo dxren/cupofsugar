@@ -52,9 +52,10 @@ export default function Index() {
 
     return (
       <div>
-        <ThemeToggle />
+        Welcome to Home
+        {/* <ThemeToggle />
         <h1 className="text-5xl text-center p-3">Welcome to Cup of Sugar</h1>
-        <ItemGrid items={items} />
+    <ItemGrid items={items} /> */}
       </div>
     );
   }
