@@ -33,7 +33,7 @@ function ItemGrid({ items }: { items: Item[] }) {
             <img
               src={item.imageUrl || sugar}
               alt={item.description}
-              className="h-auto w-full object-cover"
+              className="h-auto w-full object-contain max-h-[200px]"
             />
             <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2 text-sm">
               {item.title}

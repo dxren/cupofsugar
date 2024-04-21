@@ -46,8 +46,12 @@ export default function Dorothy() {
     <div className="min-h-screen bg-gray-100">
       <div className="navbar bg-primary text-primary-content">
         <div className="navbar-start">
-          <button className="btn btn-ghost text-xl">Cup of Sugar</button>
-          <img src={sugar} alt="Cup of Sugar" href="/" className="w-14 h-14" />
+          <Link to="/" className="btn btn-ghost text-xl">
+            Cup of Sugar
+          </Link>
+          <Link to="/">
+            <img src={sugar} alt="Cup of Sugar" className="w-14 h-14" />
+          </Link>
         </div>
         <div className="navbar-end">
           {isAuthed || <Link to="/login" className="btn w-20 btn-secondary mr-8">
@@ -60,12 +64,12 @@ export default function Dorothy() {
         <h1 className="text-4xl font-bold text-center text-gray-900 mb-8">
           Dorothy's Stuff
         </h1>
-        <p>
+        <p className="py-4">
           Hi, I'm Dorothy! I'm a software engineer and I love to code. I'm
           currently learning how to use Remix and I'm excited to build some cool
           projects with it.
         </p>
-        <div className="flex flex-col items-center">
+        <div className="py-8 flex flex-col items-center">
           <ItemGrid items={data.items} />
           <div className="my-4" />
           {isAuthed && <NewItemModal />}
