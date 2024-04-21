@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE "User" ALTER COLUMN "name" SET DEFAULT '',
+ALTER COLUMN "bio" SET DEFAULT '',
+ALTER COLUMN "location" SET DEFAULT '';
