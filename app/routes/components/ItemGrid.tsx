@@ -2,58 +2,16 @@ import React, { useState } from "react";
 import { ListBox, ListBoxItem, ProgressBar, Text } from "react-aria-components";
 import Modal from "./ItemDetailModal";
 import NewItemModal from "./NewItemModal";
+import { Item } from "@prisma/client";
+import sugar from "~/img/sugar.png";
 
-type Item = {
-  id: number;
-  name: string;
-  description: string;
-  imageUrl: string;
-};
-
-function ItemGrid() {
+function ItemGrid({ items }: { items: Item[] }) {
   const isAuthed = true;
-  const [items] = useState([
-    {
-      id: 1,
-      name: "Bouncy Castle",
-      description: "Bouncy castle taking up closet space.",
-      imageUrl:
-        "https://cup-of-sugar-assets.s3.us-east-2.amazonaws.com/bouncy-castle.jpg",
-    },
-    {
-      id: 2,
-      name: "Dehumidifier",
-      description: "A gently used dehumidifier.",
-      imageUrl:
-        "https://cup-of-sugar-assets.s3.us-east-2.amazonaws.com/dehumidifier.jpg",
-    },
-    {
-      id: 3,
-      name: "Drill",
-      description: "Nice Dewalt drill",
-      imageUrl:
-        "https://cup-of-sugar-assets.s3.us-east-2.amazonaws.com/drill.jpg",
-    },
-    {
-      id: 4,
-      name: "Eloquent JS book",
-      description: "Javascript programming book",
-      imageUrl:
-        "https://cup-of-sugar-assets.s3.us-east-2.amazonaws.com/eloquentjs.jpg",
-    },
-    {
-      id: 5,
-      name: "Tent",
-      description: "tent",
-      imageUrl:
-        "https://cup-of-sugar-assets.s3.us-east-2.amazonaws.com/tent.jpg",
-    },
-  ]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedItem, setSelectedItem] = useState<Item | null>(null);
 
-  const handleImageClick = (item) => {
+  const handleImageClick = (item: Item) => {
     console.log("item clicked:", item);
     setSelectedItem(item);
     setIsModalOpen(true);
@@ -64,38 +22,28 @@ function ItemGrid() {
   };
 
   return (
-    <div className="sm:p-8 rounded-lg flex flex-col items-center w-full">
-      <ListBox
-        aria-label="Items"
-        items={items}
-        selectionMode="multiple"
-        layout="grid"
-        className="overflow-auto outline-none rounded-lg shadow p-2 h-[500px] max-w-screen-md grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 empty:flex"
-      >
-        {(item) => (
-          <ListBoxItem
+    <div className="flex justify-center w-full">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {items.map((item) => (
+          <div
             key={item.id}
-            textValue={item.name}
-            className="relative rounded outline-none group cursor-pointer"
+            className="relative rounded group cursor-pointer overflow-hidden"
+            onClick={() => handleImageClick(item)}
           >
             <img
-              src={item.imageUrl}
+              src={item.imageUrl || sugar}
               alt={item.description}
-              className="h-full w-full object-cover rounded"
-              onClick={() => handleImageClick(item)}
+              className="h-auto w-full object-cover"
             />
-            <Text
-              slot="label"
-              className="text-[11px] text-gray-700 font-semibold overflow-hidden text-ellipsis whitespace-nowrap max-w-full block mt-1"
-            >
-              {item.name}
-            </Text>
-            {/* <Switch>Available</Switch> */}
-          </ListBoxItem>
-        )}
-      </ListBox>
-
-      {isModalOpen && <Modal item={selectedItem} onClose={closeModal} />}
+            <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2 text-sm">
+              {item.title}
+            </div>
+          </div>
+        ))}
+      </div>
+      {isModalOpen && selectedItem && (
+        <Modal item={selectedItem} onClose={() => setIsModalOpen(false)} />
+      )}
     </div>
   );
 }

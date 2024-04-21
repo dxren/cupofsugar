@@ -13,7 +13,7 @@ export default function Footer() {
     >
       <div style={{ display: "flex", justifyContent: "center" }}>
         <img
-          src="public/images/sugar.png"
+          src="app/img/sugar2.png"
           style={{ width: "80px", height: "80px" }}
           alt="Sugar"
         />

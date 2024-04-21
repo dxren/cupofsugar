@@ -1,43 +1,71 @@
-import { ActionFunctionArgs } from "@remix-run/node";
+import { ActionFunctionArgs, json } from "@remix-run/node";
 import ItemGrid from "./components/ItemGrid";
 import NewItemModal from "./components/NewItemModal";
-import { CreateItem } from "~/service/item";
-
-
+import { CreateItem, ListItem } from "~/service/item";
+import { Link, useLoaderData } from "@remix-run/react";
+import ThemeToggle from "./components/ThemeToggle";
+import Footer from "./components/Footer";
+import sugar from "~/img/sugar.png";
 
 export async function action({ request }: ActionFunctionArgs) {
-    console.log("SUBMITTED THE FORM")
-    const body = await request.formData();
-    const data = {
-        itemName: body.get("itemName")?.toString(),
-        itemDescription: body.get("itemDescription")?.toString(),
-        uploadImage: body.get("uploadImage")?.toString(),
-    };
-    console.log("Item added", data);
+  console.log("SUBMITTED THE FORM");
+  const body = await request.formData();
+  const data = {
+    itemName: body.get("itemName")?.toString(),
+    itemDescription: body.get("itemDescription")?.toString(),
+    uploadImage: body.get("uploadImage")?.toString(),
+  };
+  console.log("Item added", data);
 
+  const item = await CreateItem({
+    title: data.itemName || "",
+    description: data.itemDescription || "",
+    tag: [],
+    available: true,
+    imageUrl: data.uploadImage || "",
+    userId: "clv8uen4w0000iaqot8072h99",
+  });
 
-    const item = await CreateItem({
-        title: data.itemName || "",
-        description: data.itemDescription || "",
-        tag: [],
-        available: true,
-        imageUrl: data.uploadImage || "",
-        userId: "clv8uen4w0000iaqot8072h99",
-    })
-
-    return null;
+  return null;
 }
 
-export default function Dorothy() {
+export const loader = async () => {
+  const items = await ListItem("dorothy");
 
-    return (
-        <div>
-            <h1>Dorothy</h1>
-            <p>Hi, I'm Dorothy! I'm a software engineer and I love to code. I'm currently learning how to use Remix and I'm excited to build some cool projects with it.</p>
-            <div className="flex flex-col items-center">
-                <ItemGrid />
-                <NewItemModal />
-            </div>
+  console.log(items);
+
+  return json({ items });
+};
+
+export default function Dorothy() {
+  const data = useLoaderData<typeof loader>();
+  return (
+    <div className="min-h-screen bg-gray-100">
+      <div className="navbar bg-primary text-primary-content">
+        <div className="navbar-start">
+          <button className="btn btn-ghost text-xl">Cup of Sugar</button>
+          <img src={sugar} alt="Cup of Sugar" className="w-14 h-14" />
         </div>
-    )
+        <div className="navbar-end">
+          <Link to="/login" className="btn w-20 btn-secondary mr-8">
+            Log In
+          </Link>
+          <ThemeToggle className="mr-4" />
+        </div>
+      </div>
+      <div className="max-w-4xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+        <h1 className="text-4xl font-bold text-center text-gray-900 mb-8">
+          Dorothy's Stuff
+        </h1>
+        <p>
+          Hi, I'm Dorothy! I'm a software engineer and I love to code. I'm
+          currently learning how to use Remix and I'm excited to build some cool
+          projects with it.
+        </p>
+        <ItemGrid items={data.items} />
+        <NewItemModal />
+        <Footer />
+      </div>
+    </div>
+  );
 }

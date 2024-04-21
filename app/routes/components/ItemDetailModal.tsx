@@ -1,4 +1,12 @@
-function Modal({ item, onClose }) {
+import { Item } from "@prisma/client";
+import sugar from "~/img/sugar.png";
+
+interface ModalProps {
+  item: Item;
+  onClose: () => void;
+}
+
+function Modal({ item, onClose }: ModalProps) {
   if (!item) return null;
 
   const handleBackdropClick = (event) => {
@@ -16,9 +24,9 @@ function Modal({ item, onClose }) {
         className="bg-white p-4 rounded-lg max-w-xl w-full h-auto"
         onClick={(e) => e.stopPropagation()} // Prevent clicks from closing the modal
       >
-        <h2>{item.name}</h2>
+        <h2>{item.title}</h2>
         <img
-          src={item.imageUrl}
+          src={item.imageUrl || sugar}
           alt={item.description}
           className="max-w-full h-auto rounded"
         />
