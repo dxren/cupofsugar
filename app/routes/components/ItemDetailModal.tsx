@@ -18,19 +18,20 @@ function Modal({ item, onClose }: ModalProps) {
   return (
     <div
       onClick={handleBackdropClick}
-      className="fixed inset-0 bg-black bg-opacity-5 z-50 flex justify-center items-center"
+      className="fixed inset-0 bg-opacity-5 z-50 flex justify-center items-center"
     >
       <div
         className="bg-base-100 border-4 border-neutral p-4 rounded-lg max-w-xl w-full h-auto"
         onClick={(e) => e.stopPropagation()} // Prevent clicks from closing the modal
       >
-        <h2>{item.title}</h2>
-        <img
+        <h2 style={{ fontSize: "18px", fontWeight: "bold", paddingBottom: "20px" }}>{item.title}</h2>
+        <div className="flex justify-center bg-gray-200"><img
           src={item.imageUrl || sugar}
           alt={item.description}
-          className="max-w-full h-auto rounded"
+          className="object-contain w-96 max-h-96 h-auto rounded flex"
         />
-        <p>{item.description}</p>
+        </div>
+        <p style={{ paddingTop: "20px" }}>{item.description}</p>
         <button
           onClick={onClose} // This button also closes the modal
           className="bg-red-500 text-white px-4 py-2 rounded mt-4"
