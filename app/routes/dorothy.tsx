@@ -11,6 +11,7 @@ import { authenticator } from "~/service/auth.server";
 export async function action({ request }: ActionFunctionArgs) {
   console.log("SUBMITTED THE FORM");
   const body = await request.formData();
+  //if (body.get("edit") === 'true')  // DO STUFF
   const data = {
     itemName: body.get("itemName")?.toString(),
     itemDescription: body.get("itemDescription")?.toString(),
@@ -70,7 +71,7 @@ export default function Dorothy() {
           projects with it.
         </p>
         <div className="py-8 flex flex-col items-center">
-          <ItemGrid items={data.items} />
+          <ItemGrid items={data.items} isAuthed={isAuthed} />
           <div className="my-4" />
           {isAuthed && <NewItemModal />}
         </div>

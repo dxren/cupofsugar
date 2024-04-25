@@ -5,9 +5,7 @@ import NewItemModal from "./NewItemModal";
 import { Item } from "@prisma/client";
 import sugar from "~/img/sugar.png";
 
-function ItemGrid({ items }: { items: Item[] }) {
-  const isAuthed = true;
-
+function ItemGrid({ items, isAuthed = false }: { items: Item[], isAuthed: boolean }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<Item | null>(null);
 
@@ -42,7 +40,7 @@ function ItemGrid({ items }: { items: Item[] }) {
         ))}
       </div>
       {isModalOpen && selectedItem && (
-        <Modal item={selectedItem} onClose={() => setIsModalOpen(false)} />
+        <Modal isAuthed={isAuthed} item={selectedItem} onClose={() => setIsModalOpen(false)} />
       )}
     </div>
   );
